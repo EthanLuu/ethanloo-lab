@@ -1,0 +1,45 @@
+<script lang="ts">
+    import Icon from "./Icon.svelte";
+    interface ProjectItem {
+        title: string;
+        titleClass: string;
+        desc: string;
+        link: string;
+        gitRepo: string;
+    }
+    export let item: ProjectItem;
+</script>
+
+<div
+    class="border border-slate-200 border-opacity-30 pt-2 px-4 rounded-md bg-slate-400 bg-opacity-25 flex flex-col"
+>
+    <div>
+        <h3 class="{item.titleClass} text-2xl font-bold">{item.title}</h3>
+    </div>
+    <div class="border-b border-slate-400 border-opacity-30 py-4 flex-1">
+        <p class="text-lg">
+            {item.desc}
+        </p>
+    </div>
+    <div class="flex justify-end py-2 items-center">
+        <a
+            title={item.link}
+            href={item.link}
+            class="flex items-center hover:text-blue-300"
+        >
+            <Icon
+                name="link"
+                class="stroke-current stroke-2 h-4 w-4 mx-1 hover:stroke-blue-300"
+            />
+            <span class="text-base">
+                {item.link}
+            </span>
+        </a>
+        <a title={item.gitRepo} href={item.gitRepo} class="ml-2">
+            <Icon
+                name="github"
+                class="fill-white h-5 w-5 hover:fill-blue-300"
+            />
+        </a>
+    </div>
+</div>
