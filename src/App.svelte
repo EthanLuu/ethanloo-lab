@@ -42,7 +42,7 @@
     >
         <h1 class="text-4xl font-bold py-2">{mainTitle}</h1>
         <p class="text-xl py-4">{mainDesc}</p>
-        <div class="">
+        <div>
             <h2 class="text-3xl font-semibold py-2 mb-4">{subTitle}</h2>
             <ProjectList {items} />
         </div>
