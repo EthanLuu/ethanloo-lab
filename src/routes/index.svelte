@@ -1,5 +1,5 @@
 <script lang="ts">
-    import ProjectList from "./lib/ProjectList.svelte";
+    import ProjectList from "$lib/ProjectList.svelte";
     const mainTitle = "Welcome to EthanLoo's lab.";
     const mainDesc = "Feel free to visit anywhere you like. 🙆‍♂️";
     const subTitle = "Project List";
@@ -35,7 +35,7 @@
     ];
 </script>
 
-<main class="min-h-screen h-full font-serif text-slate-200 bg-cover flex">
+<main class="min-h-screen h-full text-slate-200 bg-cover flex">
     <div
         class="bg-black bg-opacity-40 backdrop-blur-sm"
         style="padding: 5vh 10vw;"
