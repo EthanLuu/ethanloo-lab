@@ -1,9 +1,10 @@
 import { bingApi } from "./_api";
 
 export const get = async () => {
+    const idx = Math.floor(Math.random() * 7);
     const response = await bingApi(
         "get",
-        "/HPImageArchive.aspx?format=js&idx=0&n=1"
+        `/HPImageArchive.aspx?format=js&idx=${idx}&n=1`
     );
     if (response.status === 404) {
         return {

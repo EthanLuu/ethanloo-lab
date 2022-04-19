@@ -1,69 +1,97 @@
 <script lang="ts">
-    const mainTitle = "It's Ethan here. Pleasure to meet you!";
-    const mainDesc =
-        "I am a senior undergraduate student, majoring in software engineering.";
+    import Icon from "$lib/Icon.svelte";
+
+    const mainTitle = "It's Ethan here.";
+    const mainDesc = "Pleasure to meet you!";
     export let imageUrl = "";
     const avatarUrl = "https://cdn.ethanloo.cn/img/avatar.png";
+    const items = [
+        {
+            title: "Lab",
+            icon: "beaker",
+            link: "/lab"
+        },
+        {
+            title: "Blog",
+            icon: "home",
+            link: "https://blog.ethanloo.cn"
+        }
+    ];
 </script>
 
 {#if imageUrl}
-    <img
-        src={imageUrl}
-        class="object-cover fixed h-full w-full"
-        alt="Bing background"
-    />
+    <div>
+        <img
+            src={imageUrl}
+            class="object-cover fixed h-full w-full"
+            alt="Bing background"
+        />
+    </div>
 {/if}
 
 <div
     class="bg-black bg-opacity-60 backdrop-blur-sm flex-auto flex justify-center items-center flex-col"
-    style="padding: 10vh 10vw;"
 >
-    <div class="rounded-full overflow-hidden">
+    <div
+        class="rounded-full overflow-hidden border-4 border-slate-300 border-opacity-50"
+    >
         <img src={avatarUrl} class="object-cover h-32" alt="avatar" />
     </div>
-    <h1 class="text-5xl font-bold py-6 font-serif">{mainTitle}</h1>
-    <p class="text-2xl py-3">{mainDesc}</p>
-    <p class="text-2xl py-3">
-        <span>Learn more about me at my</span>
-        <a
-            href="https://blog.ethanloo.cn"
-            class="text-blue-400 font-serif font-semibold">BLOG 📝</a
-        >
-    </p>
-    <p class="text-2xl py-3">
-        Find some interesting projects in my
-        <a
-            sveltekit:prefetch
-            href="/lab"
-            class="text-blue-400 font-serif font-semibold">LAB💡</a
-        >
-    </p>
+    <div class="flex flex-col lg:flex-row my-6">
+        <span class="text-3xl lg:text-5xl font-bold font-serif text-center">
+            {mainTitle}
+        </span>
+        <span class="w-3" />
+        <span class="text-3xl lg:text-5xl font-bold font-serif text-center">
+            {mainDesc}
+        </span>
+    </div>
+    <div class="flex gap-4 font-semibold ">
+        {#each items as item}
+            <a
+                sveltekit:prefetch
+                href={item.link}
+                class="px-3 py-2 rounded-xl border shadow-sm hover:shadow-lg hover:-translate-y-1 flex items-center bg-slate-600 bg-opacity-30"
+            >
+                <div class="mr-2">
+                    <Icon name={item.icon} class="stroke-current stroke-2" />
+                </div>
+                <span>{item.title}</span>
+            </a>
+        {/each}
+    </div>
 </div>
 
 <style>
     a {
+        overflow: hidden;
         position: relative;
+        transition: transform 0.2s ease-in-out;
     }
 
-    a::after {
-        border-radius: 3px;
+    a::before {
         content: "";
+        display: block;
         position: absolute;
-        z-index: -1;
-        top: 99%;
-        left: -0.1em;
-        right: -0.1em;
-        bottom: -2px;
+        transform: scaleX(0);
+        transform-origin: bottom right;
+        transition: transform 0.4s ease;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        inset: 0 0 0 0;
+        --tw-bg-opacity: 0.3;
         background: linear-gradient(
             to right,
-            rgb(127, 127, 213, 0.5),
-            rgb(134, 168, 231, 0.5),
-            rgb(145, 234, 228, 0.5)
+            rgb(127, 127, 213, var(--tw-bg-opacity)),
+            rgb(134, 168, 231, var(--tw-bg-opacity)),
+            rgb(145, 234, 228, var(--tw-bg-opacity))
         );
-        transition: all 100ms ease-in-out;
     }
 
-    a:hover::after {
-        top: -2px;
+    a:hover::before {
+        transform: scaleX(1);
+        transform-origin: bottom left;
     }
 </style>
