@@ -1,56 +1,69 @@
 <script lang="ts">
-    import ProjectList from "$lib/ProjectList.svelte";
-    const mainTitle = "Welcome to EthanLoo's lab.";
-    const mainDesc = "Feel free to visit anywhere you like. 🙆‍♂️";
-    const subTitle = "Project List";
-    const items = [
-        {
-            title: "Douban",
-            titleClass: "text-green-300",
-            desc: "A start of front-end journey with simple static html files.",
-            link: "/douban/index.html",
-            gitRepo: "https://github.com/EthanLuu/EthanLuu"
-        },
-        {
-            title: "Soo Mooc",
-            titleClass: "text-blue-300",
-            desc: "Online live teaching platform, developed with React, Ant Design and Nest.js.",
-            link: "https://mooc.ethanloo.cn",
-            gitRepo: "https://github.com/EthanLuu/EthanLuu"
-        },
-        {
-            title: "Soo Share",
-            titleClass: "text-indigo-300",
-            desc: "Fragmented information aggregation platform, based on Svelte, Vite, Tailwind and Express.",
-            link: "https://share.ethanloo.cn",
-            gitRepo: "https://github.com/EthanLuu/EthanLuu"
-        },
-        {
-            title: "Dong Xin Shop",
-            titleClass: "text-orange-300",
-            desc: "Website for a hareware store, including homepage and product list. Server-side rendering based on Next.js.",
-            link: "https://shop.ethanloo.cn",
-            gitRepo: "https://github.com/EthanLuu/EthanLuu"
-        }
-    ];
+    const mainTitle = "It's Ethan here. Pleasure to meet you!";
+    const mainDesc =
+        "I am a senior undergraduate student, majoring in software engineering.";
+    export let imageUrl = "";
+    const avatarUrl = "https://cdn.ethanloo.cn/img/avatar.png";
 </script>
 
-<main class="min-h-screen h-full text-slate-200 bg-cover flex">
-    <div
-        class="bg-black bg-opacity-40 backdrop-blur-sm"
-        style="padding: 5vh 10vw;"
-    >
-        <h1 class="text-4xl font-bold py-2">{mainTitle}</h1>
-        <p class="text-xl py-4">{mainDesc}</p>
-        <div>
-            <h2 class="text-3xl font-semibold py-2 mb-4">{subTitle}</h2>
-            <ProjectList {items} />
-        </div>
+{#if imageUrl}
+    <img
+        src={imageUrl}
+        class="object-cover fixed h-full w-full"
+        alt="Bing background"
+    />
+{/if}
+
+<div
+    class="bg-black bg-opacity-60 backdrop-blur-sm flex-auto flex justify-center items-center flex-col"
+    style="padding: 10vh 10vw;"
+>
+    <div class="rounded-full overflow-hidden">
+        <img src={avatarUrl} class="object-cover h-32" alt="avatar" />
     </div>
-</main>
+    <h1 class="text-5xl font-bold py-6 font-serif">{mainTitle}</h1>
+    <p class="text-2xl py-3">{mainDesc}</p>
+    <p class="text-2xl py-3">
+        <span>Learn more about me at my</span>
+        <a
+            href="https://blog.ethanloo.cn"
+            class="text-blue-400 font-serif font-semibold">BLOG 📝</a
+        >
+    </p>
+    <p class="text-2xl py-3">
+        Find some interesting projects in my
+        <a
+            sveltekit:prefetch
+            href="/lab"
+            class="text-blue-400 font-serif font-semibold">LAB💡</a
+        >
+    </p>
+</div>
 
 <style>
-    main {
-        background-image: url(https://cdn.ethanloo.cn/macos-big-sur-1280x720-dark-wwdc-2020-22655.jpg);
+    a {
+        position: relative;
+    }
+
+    a::after {
+        border-radius: 3px;
+        content: "";
+        position: absolute;
+        z-index: -1;
+        top: 99%;
+        left: -0.1em;
+        right: -0.1em;
+        bottom: -2px;
+        background: linear-gradient(
+            to right,
+            rgb(127, 127, 213, 0.5),
+            rgb(134, 168, 231, 0.5),
+            rgb(145, 234, 228, 0.5)
+        );
+        transition: all 100ms ease-in-out;
+    }
+
+    a:hover::after {
+        top: -2px;
     }
 </style>
