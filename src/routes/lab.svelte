@@ -42,7 +42,7 @@
 <div class="background fixed h-full w-full" />
 
 <main
-    class="bg-black bg-opacity-40 backdrop-blur-sm"
+    class="bg-black bg-opacity-40 backdrop-blur-sm flex-auto"
     style="padding: 5vh 10vw;"
 >
     <div>
