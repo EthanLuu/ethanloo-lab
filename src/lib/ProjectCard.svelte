@@ -11,7 +11,7 @@
 </script>
 
 <div
-    class="border border-slate-200 border-opacity-30 pt-2 px-4 rounded-md bg-slate-400 bg-opacity-25 flex flex-col"
+    class="transition-all border border-slate-200 border-opacity-40 pt-2 px-4 rounded-md bg-slate-400 bg-opacity-30 flex flex-col relative hover:-translate-y-1 hover:bg-opacity-40"
 >
     <div>
         <h3 class="{item.titleClass} text-2xl font-bold">{item.title}</h3>
@@ -25,7 +25,7 @@
         <a
             title={item.link}
             href={item.link}
-            class="flex items-center hover:text-blue-300"
+            class="flex items-center hover:text-blue-300 link"
         >
             <Icon
                 name="link"
@@ -35,11 +35,25 @@
                 {item.link}
             </span>
         </a>
-        <a title={item.gitRepo} href={item.gitRepo} class="ml-2">
+        <a title={item.gitRepo} href={item.gitRepo} class="ml-2 z-10">
             <Icon
                 name="github"
-                class="fill-white h-5 w-5 hover:fill-blue-300"
+                class="fill-white h-5 w-5 hover:fill-black"
             />
         </a>
     </div>
 </div>
+
+<style>
+    .link::after {
+        position: absolute;
+        content: "";
+        inset: 0px;
+        z-index: 1;
+        cursor: pointer;
+    }
+
+    .link:hover {
+        text-decoration: underline;
+    }
+</style>
