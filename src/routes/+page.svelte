@@ -1,7 +1,8 @@
 <script lang="ts">
     import Icon from "$lib/Icon.svelte";
+    import { onMount } from "svelte";
     import type { PageData } from "./$types";
-    
+
     export let data: PageData;
     const mainTitle = "It's Ethan here.";
     const mainDesc = "Pleasure to meet you!";
@@ -19,25 +20,32 @@
         }
     ];
 
+    let backgroundImage: HTMLImageElement;
     let isBackgroundLoaded = false;
-    const handleImageLoad = () => {
+    const handleBackgroundLoaded = () => {
         isBackgroundLoaded = true;
     };
+
+    onMount(() => {
+        isBackgroundLoaded = backgroundImage.complete;
+    });
 </script>
 
-<div class="transition-all {isBackgroundLoaded ? "opacity-100" : "opacity-0"}" >
+<!-- <div class="transition-opacity duration-500 {isBackgroundLoaded ? 'opacity-100' : 'opacity-0'}"> -->
+<div class="image-container {isBackgroundLoaded ? 'show' : ''}">
     {#if data.imageUrl}
         <img
+            bind:this={backgroundImage}
+            on:load|once={handleBackgroundLoaded}
             src={data.imageUrl}
-            class="object-cover fixed h-full w-full"
+            class="object-cover absolute left-0 h-full w-full object-left"
             alt="Bing background"
-            on:load={handleImageLoad}
         />
     {/if}
 </div>
 
 <div
-    class="bg-black {isBackgroundLoaded ? "bg-opacity-60" : "bg-opacity-90"} backdrop-blur-sm flex-auto flex justify-center items-center flex-col"
+    class="bg-black bg-opacity-70 backdrop-blur-sm flex-auto flex justify-center items-center flex-col"
 >
     <div
         class="rounded-full overflow-hidden border-4 border-slate-300 border-opacity-50"
@@ -100,5 +108,25 @@
     a:hover::before {
         transform: scaleX(1);
         transform-origin: bottom left;
+    }
+
+    .image-container {
+        position: fixed;
+        display: flex;
+        height: 100vh;
+        width: 100vw;
+        clip-path: polygon(0 0, 0% 0, 0 0%);
+        -webkit-clip-path: polygon(0 0, 0% 0, 0 0%);
+    }
+
+    .image-container.show {
+        animation: show-bg 0.5s ease-in-out forwards;
+    }
+
+    @keyframes show-bg {
+        100% {
+            clip-path: polygon(0 0, 200% 0, 0 200%);
+            -webkit-clip-path: polygon(0 0, 200% 0, 0 200%);
+        }
     }
 </style>
