@@ -1,41 +1,48 @@
 <script lang="ts">
     import Icon from "$lib/Icon.svelte";
-
+    import type { PageData } from "./$types";
+    
+    export let data: PageData;
     const mainTitle = "It's Ethan here.";
     const mainDesc = "Pleasure to meet you!";
-    export let imageUrl = "";
     const avatarUrl = "https://cdn.ethanloo.cn/img/avatar.png";
     const items = [
-        {
-            title: "Lab",
-            icon: "beaker",
-            link: "/lab"
-        },
         {
             title: "Blog",
             icon: "home",
             link: "https://blog.ethanloo.cn"
+        },
+        {
+            title: "Lab",
+            icon: "beaker",
+            link: "/lab"
         }
     ];
+
+    let isBackgroundLoaded = false;
+    const handleImageLoad = () => {
+        isBackgroundLoaded = true;
+    };
 </script>
 
-{#if imageUrl}
-    <div>
+<div class="transition-all {isBackgroundLoaded ? "opacity-100" : "opacity-0"}" >
+    {#if data.imageUrl}
         <img
-            src={imageUrl}
+            src={data.imageUrl}
             class="object-cover fixed h-full w-full"
             alt="Bing background"
+            on:load={handleImageLoad}
         />
-    </div>
-{/if}
+    {/if}
+</div>
 
 <div
-    class="bg-black bg-opacity-60 backdrop-blur-sm flex-auto flex justify-center items-center flex-col"
+    class="bg-black {isBackgroundLoaded ? "bg-opacity-60" : "bg-opacity-90"} backdrop-blur-sm flex-auto flex justify-center items-center flex-col"
 >
     <div
         class="rounded-full overflow-hidden border-4 border-slate-300 border-opacity-50"
     >
-        <img src={avatarUrl} class="object-cover h-32" alt="avatar" />
+        <img src={avatarUrl} class="object-cover h-32 w-32" alt="avatar" />
     </div>
     <div class="flex flex-col lg:flex-row my-6">
         <span class="text-3xl lg:text-5xl font-bold font-serif text-center">
@@ -49,14 +56,14 @@
     <div class="flex gap-4 font-semibold ">
         {#each items as item}
             <a
-                sveltekit:prefetch
+                data-sveltekit-preload-data
                 href={item.link}
                 class="px-3 py-2 rounded-xl border shadow-sm hover:shadow-lg hover:-translate-y-1 flex items-center bg-slate-600 bg-opacity-30"
             >
-                <div class="mr-2">
+                <div class="mr-2 z-10">
                     <Icon name={item.icon} class="stroke-current stroke-2" />
                 </div>
-                <span>{item.title}</span>
+                <span class="z-10">{item.title}</span>
             </a>
         {/each}
     </div>

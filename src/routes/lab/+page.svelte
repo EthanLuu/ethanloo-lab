@@ -8,31 +8,30 @@
             title: "Douban",
             titleClass: "text-green-300",
             desc: "A start of front-end journey with simple static html files.",
-            link: "/douban/index.html",
-            gitRepo: "https://github.com/EthanLuu/EthanLuu"
+            link: "/douban/index.html"
         },
         {
             title: "Soo Mooc",
             titleClass: "text-blue-300",
             desc: "Online live teaching platform, developed with React, Ant Design and Nest.js.",
             link: "https://mooc.ethanloo.cn",
-            gitRepo: "https://github.com/EthanLuu/EthanLuu"
-        },
-        {
-            title: "Soo Share",
-            titleClass: "text-indigo-300",
-            desc: "Fragmented information aggregation platform, based on Svelte, Vite, Tailwind and Express.",
-            link: "https://share.ethanloo.cn",
-            gitRepo: "https://github.com/EthanLuu/EthanLuu"
+            gitRepo: "https://github.com/EthanLuu/soomooc"
         },
         {
             title: "Dong Xin Shop",
             titleClass: "text-orange-300",
             desc: "Website for a hareware store, including homepage and product list. Server-side rendering based on Next.js.",
             link: "https://shop.ethanloo.cn",
-            gitRepo: "https://github.com/EthanLuu/EthanLuu"
+            gitRepo: "https://github.com/EthanLuu/react-hardware-store"
+        },
+        {
+            title: "Soo Share",
+            titleClass: "text-indigo-300",
+            desc: "Fragmented information aggregation platform, based on Svelte, Vite, Tailwind and Express.",
+            link: "https://share.ethanloo.cn",
+            gitRepo: "https://github.com/EthanLuu/soo-share-svelte"
         }
-    ];
+    ].reverse();
 </script>
 
 <svelte:head>

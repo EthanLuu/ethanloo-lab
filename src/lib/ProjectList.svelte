@@ -5,7 +5,7 @@
         titleClass: string;
         desc: string;
         link: string;
-        gitRepo: string;
+        gitRepo?: string;
     }
     export let items: ProjectItem[];
 </script>

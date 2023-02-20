@@ -5,7 +5,7 @@
         titleClass: string;
         desc: string;
         link: string;
-        gitRepo: string;
+        gitRepo?: string;
     }
     export let item: ProjectItem;
 </script>
@@ -21,7 +21,7 @@
             {item.desc}
         </p>
     </div>
-    <div class="flex justify-end py-2 items-center">
+    <div class="flex justify-end py-2 items-center overflow-hidden whitespace-nowrap text-ellipsis">
         <a
             title={item.link}
             href={item.link}
@@ -35,7 +35,7 @@
                 {item.link}
             </span>
         </a>
-        <a title={item.gitRepo} href={item.gitRepo} class="ml-2 z-10">
+        <a hidden={!item.gitRepo} title={item.gitRepo} href={item.gitRepo} class="ml-2 z-10">
             <Icon
                 name="github"
                 class="fill-white h-5 w-5 hover:fill-black"
