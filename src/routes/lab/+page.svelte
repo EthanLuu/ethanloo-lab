@@ -2,8 +2,9 @@
     import ProjectList from "$lib/ProjectList.svelte";
     const mainTitle = "Welcome to EthanLoo's lab.";
     const mainDesc = "Feel free to visit anywhere you like. 🙆‍♂️";
-    const subTitle = "Project List";
-    const items = [
+    const projectsTitle = "Project List";
+    const toolsTitle = "Small tools";
+    const projects = [
         {
             title: "Douban",
             titleClass: "text-green-300",
@@ -32,6 +33,23 @@
             gitRepo: "https://github.com/EthanLuu/soo-share-svelte"
         }
     ].reverse();
+
+    const tools = [
+        {
+            title: "Transcript Translator",
+            titleClass: "text-pink-300",
+            desc: "Help to translate transcripts.",
+            link: "https://translate.ethanloo.cn/",
+            gitRepo: "https://github.com/EthanLuu/transcript-translator"
+        },
+        {
+            title: "Find UN Internship",
+            titleClass: "text-cyan-300",
+            desc: "Crawl the UN career website and filter the results.",
+            link: "https://un-intern.ethanloo.cn/",
+            gitRepo: "https://github.com/EthanLuu/find-un-interns"
+        }
+    ];
 </script>
 
 <svelte:head>
@@ -48,9 +66,17 @@
         <h1 class="text-5xl font-bold py-2 font-serif">{mainTitle}</h1>
         <p class="text-2xl py-4">{mainDesc}</p>
     </div>
-    <div>
-        <h2 class="text-4xl font-semibold py-2 mb-4 font-serif">{subTitle}</h2>
-        <ProjectList {items} />
+    <div class="py-2">
+        <h2 class="text-4xl font-semibold py-2 mb-4 font-serif">
+            {projectsTitle}
+        </h2>
+        <ProjectList items={projects} />
+    </div>
+    <div class="py-2">
+        <h2 class="text-4xl font-semibold py-2 mb-4 font-serif">
+            {toolsTitle}
+        </h2>
+        <ProjectList items={tools} />
     </div>
 </main>
 
