@@ -31,6 +31,13 @@
             desc: "Fragmented information aggregation platform, based on Svelte, Vite, Tailwind and Express.",
             link: "https://share.ethanloo.cn",
             gitRepo: "https://github.com/EthanLuu/soo-share-svelte"
+        },
+        {
+            title: "UNiQ",
+            titleClass: "text-fuchsia-300",
+            desc: "UN internship application assistant, based on Vue, Element Plus, ChatGPT and NuxtJS.",
+            link: "https://un.ethanloo.cn",
+            gitRepo: "https://github.com/EthanLuu/find-un-interns"
         }
     ].reverse();
 

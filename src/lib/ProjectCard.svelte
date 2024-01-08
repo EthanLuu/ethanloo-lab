@@ -27,6 +27,7 @@
         <a
             title={item.link}
             href={item.link}
+            target="_blank"
             class="flex items-center hover:text-blue-300 link overflow-hidden"
         >
             <Icon
@@ -41,6 +42,7 @@
             hidden={!item.gitRepo}
             title={item.gitRepo}
             href={item.gitRepo}
+            target="_blank"
             class="ml-2 z-10"
         >
             <Icon name="github" class="fill-white h-5 w-5 hover:fill-black" />
